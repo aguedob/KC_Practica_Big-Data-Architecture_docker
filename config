@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Number of nodes 3
+NODES=3

@@ -1,12 +1,12 @@
-FROM ubuntu:16.04
-MAINTAINER irm
+FROM  ubuntu:18.04
+LABEL maintainer="andres@meigal.com"
 
 WORKDIR /root
 
 # install openssh-server, openjdk and wget
 RUN apt-get update && apt-get install -y openssh-server openjdk-8-jdk wget
 
-# install hadoop 2.7.2
+# install hadoop 2.7.7
 RUN wget http://apache.rediris.es/hadoop/common/hadoop-2.7.7/hadoop-2.7.7.tar.gz && \
     tar -xzvf hadoop-2.7.7.tar.gz && \
     mv hadoop-2.7.7 /usr/local/hadoop && \
@@ -36,7 +36,7 @@ RUN mv /tmp/ssh_config ~/.ssh/config && \
     mv /tmp/mapred-site.xml $HADOOP_HOME/etc/hadoop/mapred-site.xml && \
     mv /tmp/yarn-site.xml $HADOOP_HOME/etc/hadoop/yarn-site.xml && \
     mv /tmp/slaves $HADOOP_HOME/etc/hadoop/slaves && \
-    mv /tmp/start-hadoop.sh ~/start-hadoop.sh
+    mv /tmp/start-hadoop.sh ~/start-hadoop.sh    
 
 RUN chmod +x ~/start-hadoop.sh && \
     chmod +x $HADOOP_HOME/sbin/start-dfs.sh && \
